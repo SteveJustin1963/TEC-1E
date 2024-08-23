@@ -1,0 +1,38 @@
+Ken Stone?Australian Vintage Computer Group
+December 10, 2018 · 
+ 
+Updated memory map for the TEC-1E.
+The expansion board that would sit above the rear of the main PCB would have 7 memory/expansion slots on it. These could be used to add more RAM, more ROM, or hardware that needs its own drivers, which would be in that onboard ROM. These ROMs would be expected at address 0000 on their corresponding page, so the TEC-1E OS (monitor/whatever) can always find them. This would result in some sort of plug-and-play system.
+The top 8k on the main board is now permanently RAM, for use as a scratch pad when page swapping, and for the stack and system variables. 
+Immediately below this is 8k of ROM that will contain the new monitor/utilities or whatever. The stack being placed above this this ROM makes it very easy to detect a stack crash and reset the computer BEFORE it overwrites everything in RAM. This was the most common failure mode for software errors in the original TEC-1, and I lost quite a large project this way.
+There may be other slots on the expansion board that are for I/O only, where no onboard memory would be needed.
+8John Hardy and 7 others
+5 Comments
+1 Share
+Like
+Comment
+Share
+Comments
+Scott Gregory
+Scott Gregory Never liked Plug-N-Pray. Always seemed flakey back in early days, seems much better now days. I think the Amiga's Zorro slot AutoConfig was the one that got it right. All boards initially appear at the same address and use the slot select signal to determine who is getting the initial address config and steering info.
+Hide or report this
+Like
+ · Reply · 11w
+Ken Stone
+Ken Stone replied
+ 
+·
+ 1 Reply
+Craig Hart
+Craig Hart Didn't Jim build a memory crash protection system by detecting a write to top of memory? I recall some massive diode based logic gate that punched reset or nmi.
+Hide or report this
+Like
+ · Reply · 10w
+Craig Hart
+Craig Hart replied
+ 
+·
+ 2 Replies
+Stephen Justin
+Write a comment...
+
